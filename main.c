@@ -3,8 +3,8 @@
 #include <time.h>
 #include <unistd.h>
 
-#define SIZE 10
-#define NB_SHIPS 4
+#define SIZE 3
+#define NB 3
 
 /**
  * @brief Enumeration representing different types of elements.
@@ -79,6 +79,7 @@ int is_player_dead(Player* p);
 
 // Creates a new ship with the specified size, position, and orientation.
 Ship* createShip(int size, int pos1,int pos2, int or){
+    puts("test");
     Ship* ship = malloc(sizeof(Ship)); // Allocate memory for the ship
     if(ship==NULL){
         exit(1); // Exit if memory allocation fails
@@ -145,7 +146,7 @@ void board_init(Player* p){
             exit(15);
         }
         for(int j=0;j<SIZE;j++){
-            (p->board.board[i])[j] = WATER;
+            p->board.board[i][j] = WATER;
         }
     }
 
@@ -155,7 +156,7 @@ void board_init(Player* p){
     int or;
     int size = 0;
 
-    for(int i=0;i<NB_SHIPS;i++){
+    for(int i=0;i<NB;i++){
         size = i+1; // there will be one boat of each size
 
         while(collision==0){
@@ -163,15 +164,15 @@ void board_init(Player* p){
             x = rand()%SIZE;
             y = rand()%SIZE;
             or = rand()%2;
-            printf("%d %d %d \n",x,y,or);
+            printf("%d %d %d taille : %d \n",x,y,or,size);
             for (int j = 0; j < size; j++) {
                 if (or == 1) {
-                    if (y + size >= SIZE || p->board.board[x][y + j] == BOAT) {
+                    if (y + j >= SIZE || p->board.board[x][y + j] == BOAT) {
                         collision = 0;
                         break;
                     }
                 } else {
-                    if (x + size >= SIZE || p->board.board[x + j][y] == BOAT) {
+                    if (x + j >= SIZE || p->board.board[x + j][y] == BOAT) {
                         collision = 0;
                         break;
                     }
@@ -179,16 +180,20 @@ void board_init(Player* p){
             }          
 
         }
+        collision = 0;
         if(or==1){
-            for(int j=0;j<size;j++){
-                p->board.board[x][y+j] = BOAT ;
+            puts("test1");
+            for(int k=0;k<size;k++){
+                p->board.board[x][y+k] = BOAT ;
             }
         }
         else{
-            for(int j=0;j<size;j++){
-                p->board.board[x+j][y] = BOAT;
+            puts("test2");
+            for(int h=0;h<size;h++){
+                p->board.board[x+h][y] = BOAT;
             }
         }
+        puts("test3");
         p->ships[i] = createShip(size,x,y,or);         
     }
 
@@ -199,8 +204,8 @@ Player* create_Player(){
     if(p==NULL){
         exit(20);
     }
-    p->nb_ships = NB_SHIPS;
-    p->ships = malloc(sizeof(Ship)*NB_SHIPS);
+    p->nb_ships = NB;
+    p->ships = malloc(sizeof(Ship)*NB);
     if(p->ships==NULL){
         free(p);
         exit(21);
@@ -481,7 +486,7 @@ int main(){
         printEnemyBoard(game->computer);
 
         puts("----- SIR THE ENEMY IS ATTACKING TAKE COVER ! ------");
-        sleep(2);
+        sleep(4);
         computerTurn(game);
         if(is_player_dead(game->player1)){
             puts("----- YOU DIED ------");
@@ -491,8 +496,10 @@ int main(){
         printAllyBoard(game->player1);
         puts("\nEnemy ships : ");
         printEnemyBoard(game->computer);
-        sleep(2);        
+        sleep(4);        
     }
+
+    freeGame(game);
     return 0;
 }
 
