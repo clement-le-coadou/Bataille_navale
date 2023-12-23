@@ -22,5 +22,5 @@ clean :
 	rm -f exec
 
 doxy : 
-	doxygen -g
+	doxygen Doxyfile
 	
