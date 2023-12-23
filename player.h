@@ -8,8 +8,8 @@
 
     
 
-    #define SIZE 3
-    #define NB 3
+    #define SIZE 10
+    #define NB 4
     /**
      * @brief Structure representing the game board.
      */
