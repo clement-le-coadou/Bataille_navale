@@ -21,6 +21,22 @@ int main() {
     int win = 0;
     Game* game = create_Game();
 
+    puts("Welcome to the Battleship Game Captain!");
+    puts("================================");
+
+    // Basic rules
+    printf("\nBasic Rules:\n");
+    puts("1. The game is played on a rectangular grid.");
+    puts("2. The computer will randomly place the ships for you.");
+    puts("3. Ships can be placed horizontally or vertically.");
+    puts("4. You need to guess the coordinates of enemy ships and attack them.");
+    puts("5. A successful hit occurs if your shot lands on a ship. Otherwise, it's a miss.");
+    puts("6. I you sink all of the computer's ships wins the game.");
+
+    // Information about coordinates
+    puts("\nNote: X coordinates represent rows, and Y coordinates represent columns.\n");
+
+
     // Main game loop
     while (win == 0) {
         // Player's turn
