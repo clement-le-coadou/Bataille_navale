@@ -33,7 +33,7 @@ void playerTurn(Game* game) {
     int ok = 1;
 
     // Input validation for X coordinate
-    puts("Hello captain, please enter X coordinate");
+    puts("Captain, please enter X coordinate");
     do {
         verif = scanf("%d", &choice_X);
         if (verif != 1 || choice_X < 0 || choice_X > SIZE - 1) {
@@ -47,7 +47,7 @@ void playerTurn(Game* game) {
 
     // Input validation for Y coordinate
     ok = 1;
-    puts("Hello captain, please enter Y coordinate");
+    puts("Captain, please enter Y coordinate");
     do {
         verif = scanf("%d", &choice_Y);
         if (verif != 1 || choice_Y < 0 || choice_Y > SIZE - 1) {
