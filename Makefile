@@ -20,6 +20,7 @@ debug:
 clean : 
 	rm -f *.o
 	rm -f exec
+
 doxy : 
 	doxygen -g
 	
